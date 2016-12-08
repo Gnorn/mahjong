@@ -1,9 +1,30 @@
 # mahjong
 A Mahjong tournament software
 
-Quick overview before a more detailed readme is available: this allows you to run a mahjong tournament (or other 4-player games) by importing a table map, creating players, inputing results and penalties, and getting a ranking. Dynamic placement and ranking (depending on the result of players during the previous rounds for placement, and allowing for advanced calculation methods for ranking) is also available.
+Copyright 2016 Simon Picard
 
-Required : Apache2, PHP5, SQLite3. If like me you're running this on debian and don't have those, you should be good to go with sudo apt-get install apache2 php5 libapache2-mod-php5 php5-sqlite . If you're using another distribution you probably can manage to get it running. If you don't know what all this is about, read the following :
+This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+---
+
+QUICK OVERVIEW before a more detailed readme is available: this allows you to run a mahjong tournament (or other 4-player games) by importing a table map, creating players, inputing results and penalties, and getting a ranking. Dynamic placement and ranking (depending on the result of players during the previous rounds for placement, and allowing for advanced calculation methods for ranking) is also available.
+
+---
+
+REQUIRED : Apache2, PHP5, SQLite3. If like me you're running this on debian and don't have those, you should be good to go with sudo apt-get install apache2 php5 libapache2-mod-php5 php5-sqlite . If you're using another distribution you probably can manage to get it running. If you don't know what all this is about, read the following :
+
+---
 
 VERY EASY START :
 You can run this in a virtual machine (VM) on your computer. It's like a virtual computer running inside your computer. In order to do that, do the followings :
