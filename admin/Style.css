@@ -1,0 +1,25 @@
+body {
+color:black;
+background-color:white;
+}
+
+table {
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+tr:not(.Game) {
+	background-color: red;
+	border: 1px solid black;
+}
+
+tr:hover:not(.Map, .Menu) {
+	background-color: blue;
+}
+
+.Map td {
+	border: 1px solid black;
+}
+.Map td:hover {
+	background-color: blue;
+}
