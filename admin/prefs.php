@@ -1,5 +1,5 @@
 <?php
 
-// $dynamic = "disabled";
+ $dynamic = "disabled";
 
 ?>
