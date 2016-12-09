@@ -20,6 +20,15 @@ try {
   // Set errormode to exceptions
   $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+  // Get tournament infos
+  $result = $file_db->query('SELECT * FROM Tournaments WHERE id='.$ID);
+  foreach ($result as $TournamentInfo) {
+    $TournamentName = $TournamentInfo['name'];
+    $TournamentDescription = $TournamentInfo['description'];
+    $TournamentMap = $TournamentInfo['map'];
+    $TournamentMapType = $TournamentInfo['maptype'];
+  }
+
   // Get players list
   $result = $file_db->query('SELECT * FROM _'.$ID.'_Players');
   foreach ($result as $Player) {
@@ -79,7 +88,7 @@ foreach ($Games as $Game) {
 
 array_multisort($SortGames, SORT_ASC, $Games);
 
-echo "<b>".$PlayerID.". ".$Players[$PlayerID]."</b>";
+echo "<div class=\"Title\"><b>Tournoi $TournamentName</b><br /><b>".$PlayerID.". ".$Players[$PlayerID]."</b></div>";
 $count = 1;
 echo "<table><tr><th>Round</th><th>Table</th><th>Score</th><th>Penalties</th></tr>";
 $total = 0;

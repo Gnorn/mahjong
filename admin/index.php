@@ -32,7 +32,7 @@
     $result = $file_db->query('SELECT * FROM Tournaments');
 
 ?>
-<table>
+<table class="TableIndex">
 <tr><th>Tournament name</th><th colspan=2>Description</th></tr>
 <?php 
 
@@ -43,7 +43,7 @@
       $name = $m['name'];
       $description = $m['description'];
 
-      echo "<tr onclick=\"document.location = 'tournament.php?id=$id';\"><td>$name</td><td>$description</td><td><a href=\"delete.php?id=$id\">Delete</a></td></tr>";
+      echo "<tr onclick=\"document.location = 'tournament.php?id=$id';\"><td class=\"ColIndex1\">$name</td><td class=\"ColIndex2\">$description</td><td><a href=\"delete.php?id=$id\">Delete</a></td></tr>";
     }
 
 ?><tr onclick="document.location = 'create.php';"><td colspan=3>Create new tournament...</td></tr></table><?php

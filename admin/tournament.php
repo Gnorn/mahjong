@@ -53,15 +53,15 @@ function toggleranking(id) {
     }
 
     echo "<div class=\"Title\"><b>Tournoi $TournamentName</b><br />
-	$TournamentDescription<p></div>
+	$TournamentDescription</div>
 
-	<div class\"Menu\"><table><tr class=\"Menu\"><td>Menu:</td><td><a href=\"javascript:void(0)\" onclick=\"display('Players');\">Players</a></td><td><a href=\"javascript:void(0)\" onclick=\"display('Rankings');\">Rankings</a></td><td><a href=\"javascript:void(0)\" onclick=\"display('Rounds');\">Rounds</a></td><td><a href=\"index.php\">Back to index</a></td><td><a href=\"../tournaments.sqlite3\">Download DB</a></tr></table></div>	
+	<div class\"Menu\"><table class=\"Menu\"><tr class=\"Menu\"><td class=\"Menu\">Menu:</td><td class=\"Menu\"><a href=\"javascript:void(0)\" onclick=\"display('Players');\">Players</a></td><td class=\"Menu\"><a href=\"javascript:void(0)\" onclick=\"display('Rankings');\">Rankings</a></td><td class=\"Menu\"><a href=\"javascript:void(0)\" onclick=\"display('Rounds');\">Rounds</a></td><td class=\"Menu\"><a href=\"index.php\">Back to index</a></td><td class=\"Menu\"><a href=\"../tournaments.sqlite3\">Download DB</a></tr></table></div>	
 
 	<p>
 
 	<div id=\"Players\" style=\"display:none\"><b>Players:</b>
 	<table>
-	<tr><th>ID</th><th>Name</th><th>Score</th><th>Penalty</th></tr>";
+	<tr><th>ID</th><th class=\"ColPlayers2\">Name</th><th>Score</th><th>Penalty</th></tr>";
 
     // Get players list
     $MaxPlayer=0;
@@ -110,7 +110,7 @@ function toggleranking(id) {
     // Display rankings
     echo "<div id=\"Rankings\" style=\"display:none\"><b>Rankings:</b><br />
 	<table>
-	<tr><th>Ranking</th><th>Player</th><th>Score</th></tr>";
+	<tr><th>Rank</th><th class=\"ColPlayers2\">Player</th><th>Score</th></tr>";
     $PlayersBis = $Players;
     foreach ($Scores as $key=>$value) {
       $ScorePenal[$key] = $value + $Penalties[$key];
@@ -126,7 +126,7 @@ function toggleranking(id) {
 
     // Display rounds
     echo "<div id=\"Rounds\" style=\"display:none\"><b>Rounds:</b>
-	<table><tr onclick=\"document.location = 'round.php?id=".$ID."&round=1';\"><td>Round 1:</td>";
+	<table><tr onclick=\"document.location = 'round.php?id=".$ID."&round=1';\"><td>Round #1</td>";
 
     // Parse tournament map
     $Map = [];
@@ -140,10 +140,10 @@ function toggleranking(id) {
 
       if ($game[0] > $current) {
         $current = $game[0];
-        echo "</tr><tr onclick=\"document.location = 'round.php?id=".$ID."&round=".$current."';\"><td>Round $current:</td>";
+        echo "</tr><tr onclick=\"document.location = 'round.php?id=".$ID."&round=".$current."';\"><td>Round #$current</td>";
       }
-      echo "<td>Table ".$game[1]."
-	<table class=\"Game\">
+      echo "<td>Table ".$game[1]." :
+	<table class=\"TableGameInRound\">
 	<tr class=\"Game\"><td>".$game[2].". ".$Players[$game[2]]."</td></tr>
 	<tr class=\"Game\"><td>".$game[4].". ".$Players[$game[4]]."</td></tr>
 	<tr class=\"Game\"><td>".$game[6].". ".$Players[$game[6]]."</td></tr>
@@ -165,7 +165,7 @@ function toggleranking(id) {
     foreach ($RankByRound as $key=>$value) {
       echo "<b><a href=\"javascript:void(0)\" onclick=\"toggleranking('Rankings$key');\">Round #$key</a></b><br \>
 	<div id=\"Rankings$key\" style=\"display:none\"><table>
-	<tr><th>Rank</th><th>Player</th><th>Overall Score</th></tr>\n";
+	<tr><th>Rank</th><th class=\"ColPlayers2\">Player</th><th>Overall Score</th></tr>\n";
       foreach ($value as $keybis=>$valuebis) {
         echo "<tr><td>$keybis</td><td>".$Players[$valuebis]."</td><td>".$OverallScoreByRound[$key][$valuebis]."</td></tr>";
       }
@@ -179,15 +179,15 @@ function toggleranking(id) {
 	<table>";
     $CurrentRound = 1;
     foreach ($MapRounds as $MapRound) {
-      echo "<tr onclick=\"document.location = 'round.php?id=".$ID."&round=".$CurrentRound."';\"><td>Round $CurrentRound:</td>";
+      echo "<tr onclick=\"document.location = 'round.php?id=".$ID."&round=".$CurrentRound."';\"><td>Round #$CurrentRound</td>";
       $CurrentGame = 1;
       foreach ($MapRound as $MapGame) {
         eval("\$MapGame1 = ".$MapGame[1].";");
         eval("\$MapGame2 = ".$MapGame[2].";");
         eval("\$MapGame3 = ".$MapGame[3].";");
         eval("\$MapGame4 = ".$MapGame[4].";");
-        echo "<td>Table $CurrentGame
-	<table class=\"Game\">
+        echo "<td>Table $CurrentGame :
+	<table class=\"TableGameInRound\">
 	<tr class=\"Game\"><td>".$MapGame1.". ".$Players[$MapGame1]."</td></tr>
 	<tr class=\"Game\"><td>".$MapGame2.". ".$Players[$MapGame2]."</td></tr>
 	<tr class=\"Game\"><td>".$MapGame3.". ".$Players[$MapGame3]."</td></tr>

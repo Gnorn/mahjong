@@ -53,7 +53,7 @@ include "prefs.php";
 <table>
 <form action="editmap.php" method="post">
 <tr><td>Tournament map type:</td><td><label for="static"><input id="static" type="radio" name="maptype" value="static" <?php if($TournamentMaptype == "static") echo "checked"; ?>> Static</static> - <label for="dynamic"><input id="dynamic" type="radio" name="maptype" value="dynamic"<?php if ($dynamic =="disabled") echo "disabled"; if($TournamentMaptype == "dynamic") echo "checked"; ?>> Dynamic</label></td></tr>
-<tr><td>Tournament map:</td><td><textarea name="map"><?php echo $TournamentMap; ?></textarea></td></tr>
+<tr><td>Tournament map:</td><td><textarea rows="20" cols="100" name="map"><?php echo $TournamentMap; ?></textarea></td></tr>
 </table>
 <input type="hidden" name="id" value="<?php echo $ID; ?>">
 <input type="submit" name="create" value="Create">
@@ -97,7 +97,7 @@ include "prefs.php";
    echo "Map Tournament updated with the following info:<br />
 	<table>
 	<tr><td>Map type:</td><td>$maptype</td></tr>
-	<tr><td>Tournament map:</td><td><textarea>$map</textarea></td></tr>
+	<tr><td>Tournament map:</td><td><textarea rows=\"20\" cols=\"100\">$map</textarea></td></tr>
 	</table>";
 
 }
