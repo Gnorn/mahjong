@@ -26,7 +26,7 @@ include "prefs.php";
 <tr><td>Name of the tournament:</td><td><input type="text" name="name"></td></tr>
 <tr><td>Description:</td><td><input type="text" name="description"></td></tr>
 <tr><td>Tournament map type:</td><td><label for="static"><input id="static" type="radio" name="maptype" value="static" checked> Static</static> - <label for="dynamic"><input id="dynamic" type="radio" name="maptype" value="dynamic"<?php if ($dynamic =="disabled") echo "disabled";?>> Dynamic</label></td></tr>
-<tr><td>Tournament map:</td><td><textarea name="map"></textarea></td></tr>
+<tr><td>Tournament map:</td><td><textarea rows="20" cols="100" name="map"></textarea></td></tr>
 </table>
 <input type="submit" name="create" value="Create">
 </form>
@@ -81,7 +81,7 @@ include "prefs.php";
 	<tr><td>Name of the tournament:</td><td>$name</td></tr>
 	<tr><td>Description:</td><td>$description</td></tr>
 	<tr><td>Map type:</td><td>$maptype</td></tr>
-	<tr><td>Tournament map:</td><td><textarea>$map</textarea></td></tr>
+	<tr><td>Tournament map:</td><td><textarea rows="20" cols="100">$map</textarea></td></tr>
 	</table>
 	<p>
 	<a href=\"index.php\">Back to index</a> - <a href=\"tournament.php?id=$TournamentId\">Go to tournament page</a>";
