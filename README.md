@@ -94,7 +94,7 @@ AttributeRank(best rank to attribute, worst rank to attribute, pool's best rank 
 -worst rank to attribute : that's the worst rank you'll attribute with this call
 -pool's best rank from previous deal : that's the rank of the highest ranked player you'll consider for the pool to which you'll attribute ranks
 -pool's worst rank from previous deal : that's the rank of the lowset ranked player you'll consider for the pool to which you'll attribute ranks
--how you'll calculate the score that'll be used for ranking (you can use the same variables as we used for placement).
+-score formula : how you'll calculate the score that'll be used for ranking (you can use the same variables as we used for placement).
 
 You can call the AttributeRank function as many times as is necessary to establish a ranking. It has to be followed each time by a semi-colon (“;”), and special characters have to be escaped. Note that if your tournaments follows a static structure at a given round, you can just replace all of this by the word “static”. Here is an example of a tournament with 4 deals and 8 players (you can save it as *.csv an open it in a spreadsheet editor). In the first 3 deals the tournament follows a static structure for both placement and ranking. The last game is a playoff where the 4 highest ranked players fight at the same table for ranks 1 to 4 and only get to keep 50% of their previous overall scores, whereas the 4 lowest ranked players fight for ranks 5 to 8 and keep all of their previous overall score :
 
