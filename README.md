@@ -26,11 +26,12 @@ If something is not clear in this README file send me an email at sim.pic@free.f
 
 REQUIRED: Apache2, PHP5, SQLite3. If like me you're running this on debian and don't have those, you should be good to go with
 sudo apt-get install apache2 php5 libapache2-mod-php5 php5-sqlite
+
 If you're using another distribution you probably can manage to get it running. If you don't know what all this is about, read the "VERY EASY START" section at the end of this file!
 
 ---
 
-INSTALLATION: this is a web based application. You can run it on a web server with PHP5 and SQLite3 (local or distant). You should just put the files on the server and access them from a browser. There is a public part, which is at the root of the folder, and a private part, in the folder admin (for now the public part is empty, but it will have the same functions as the admin part without the editing capabilities). If you intend to run this on a public server, you should secure the admin folder (I use a .htaccess file).
+INSTALLATION: this is a web based application. You can run it on a web server (local or distant) with PHP5 and SQLite3. You should just put the files on the server and access them from a browser. There is a public part, which is at the root of the folder, and a private part, in the "admin" folder (for now the public part is empty, but it will eventually have the same functions as the admin part without the editing capabilities). If you intend to run this on a public server, you should secure the admin folder (I use a .htaccess file).
 
 ---
 
@@ -75,13 +76,13 @@ If you want to have a clearer view of this file, just copy the tournament map in
 
 ---
 
-DYNAMIC TOURNAMENT: a dynamic tournament is a tournament where the players' placement depend on their result in the tournament, and the ranking may be just complex than just the cumulative scores of the players. This may be used for a swiss-system tournament, or for a tournament with playoffs. This requires the user to execute code and thus poses a security threat if it is not run in a secure environment, so the option is disabled by default. To enable it, edit the prefs.php in the admin folder and comment this line : "$dynamic = "disabled";".
+DYNAMIC TOURNAMENT: a dynamic tournament is a tournament where the players' placement depend on their result in the tournament, and the ranking may be more complex than just the cumulative scores of the players. This may be used for a swiss-system tournament, or for a tournament with playoffs. This requires the user to execute PHP code and thus poses a security threat if it is not run in a secure environment, so the option is disabled by default. To enable it, edit the prefs.php in the admin folder and comment this line : “$dynamic = "disabled";”.
 
 The format of the tournament map is similar to that of a static tournament, but the player's number may not be plainly expressed, instead being calculated based on the players' results. There is also an extra line after each round that tells the system how to establish ranking.
 
 In order to determine the players' IDs you can use the following variables (although you will mostly use the first one), and even intertwine them:
--$RankByRound[Round][Rank] : if for example you call $RankByRound[3][1] you will get the ID of the highest ranked player after round 3. If you call $RankByRound[4][2] you will get the ID of the second position player after round 4
--$ScoreByRound[$Player,$Round] : the score of player $Player got at round $Round
+-$RankByRound[Round][Rank] : if for example you call $RankByRound[3][1] you will get the ID of the highest ranked player after round 3. If you call $RankByRound[4][2] you will get the ID of the second highest ranked player after round 4
+-$ScoreByRound[$Player,$Round] : the score player $Player got at round $Round
 -$OverallScoreByRound[$Player,$Round] : the overall score of player $Player after round $Round (including previous weighting/calculations)
 -basically any php code: maths operators, conditional structures, etc. Your tournament map may become hard to read, though.
 
@@ -95,7 +96,7 @@ AttributeRank(best rank to attribute, worst rank to attribute, pool's best rank 
 -pool's worst rank from previous deal : that's the rank of the lowset ranked player you'll consider for the pool to which you'll attribute ranks
 -how you'll calculate the score that'll be used for ranking (you can use the same variables as we used for placement).
 
-You can call the AttributeRank function as many times as is necessary to establish a ranking. It has to be followed each time by a semi-colon, and special characters have to be escaped. Note that if your tournaments follows a static structure at a given round, you can just replace all of this by "static". Here is an example of a tournament with 4 deals and 8 players (you can save it as *.csv an open it in a spreadsheet editor). In the first 3 deals the tournament follows a static structure for both placement and ranking. The last game is a playoff where the 4 highest ranked players fight for ranks 1 to 4 and only get to keep 50% of their previous overall scores, whereas the 4 lowest ranked players fight for ranks 5 to 8 and keep all of their previous overall score :
+You can call the AttributeRank function as many times as is necessary to establish a ranking. It has to be followed each time by a semi-colon (“;”), and special characters have to be escaped. Note that if your tournaments follows a static structure at a given round, you can just replace all of this by the word “static”. Here is an example of a tournament with 4 deals and 8 players (you can save it as *.csv an open it in a spreadsheet editor). In the first 3 deals the tournament follows a static structure for both placement and ranking. The last game is a playoff where the 4 highest ranked players fight at the same table for ranks 1 to 4 and only get to keep 50% of their previous overall scores, whereas the 4 lowest ranked players fight for ranks 5 to 8 and keep all of their previous overall score :
 
 1,1,1,0,2,0,3,0,4,0
 1,2,5,0,6,0,7,0,8,0
