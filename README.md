@@ -82,8 +82,8 @@ The format of the tournament map is similar to that of a static tournament, but 
 
 In order to determine the players' IDs you can use the following variables (although you will mostly use the first one), and even intertwine them:
 -$RankByRound[Round][Rank] : if for example you call $RankByRound[3][1] you will get the ID of the highest ranked player after round 3. If you call $RankByRound[4][2] you will get the ID of the second highest ranked player after round 4
--$ScoreByRound[$Player,$Round] : the score player $Player got at round $Round
--$OverallScoreByRound[$Player,$Round] : the overall score of player $Player after round $Round (including previous weighting/calculations)
+-$ScoreByRound[$Player][$Round] : the score player $Player got at round $Round
+-$OverallScoreByRound[$Player][$Round] : the overall score of player $Player after round $Round (including previous weighting/calculations)
 -basically any php code: maths operators, conditional structures, etc. Your tournament map may become hard to read, though.
 
 Ranking is determined by an extra line after each round that has the following format:
