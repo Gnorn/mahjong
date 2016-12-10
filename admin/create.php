@@ -81,7 +81,7 @@ include "prefs.php";
 	<tr><td>Name of the tournament:</td><td>$name</td></tr>
 	<tr><td>Description:</td><td>$description</td></tr>
 	<tr><td>Map type:</td><td>$maptype</td></tr>
-	<tr><td>Tournament map:</td><td><textarea rows="20" cols="100">$map</textarea></td></tr>
+	<tr><td>Tournament map:</td><td><textarea rows=\"20\" cols=\"100\">$map</textarea></td></tr>
 	</table>
 	<p>
 	<a href=\"index.php\">Back to index</a> - <a href=\"tournament.php?id=$TournamentId\">Go to tournament page</a>";
