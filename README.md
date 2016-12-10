@@ -20,11 +20,13 @@ This program is free software: you can redistribute it and/or modify
 
 QUICK OVERVIEW: this allows you to run a mahjong tournament (or other 4-player games) by importing a table map, creating players, inputing results and penalties, and getting a ranking. Dynamic placement and ranking (depending on the result of players during the previous rounds for placement, and allowing for advanced calculation methods for ranking) is also available.
 
+If something is not clear in this README file send me an email at sim.pic@free.fr :)
+
 ---
 
 REQUIRED: Apache2, PHP5, SQLite3. If like me you're running this on debian and don't have those, you should be good to go with
 sudo apt-get install apache2 php5 libapache2-mod-php5 php5-sqlite
-If you're using another distribution you probably can manage to get it running. If you don't know what all this is about, read the "VERY EASY START" section.
+If you're using another distribution you probably can manage to get it running. If you don't know what all this is about, read the "VERY EASY START" section at the end of this file!
 
 ---
 
@@ -36,7 +38,77 @@ SECURITY DISCLAIMER: one of the functions of this program, the dynamic tournamen
 
 ---
 
-HOW TO USE: when you first access the program, it will create a database which will contain tournaments info. You will be presented with an empty list of tournaments, click on "Create new tournament..." You will then be asked for
+HOW TO USE: when you first access the program, it will create a database which will contain tournaments info. You will be presented with an empty list of tournaments, click on "Create new tournament..." You will then be asked for your tournament info:
+-Name of the tournament: should be self-explanatory
+-Description: optional, a short description of your tournament
+-Tournament map type: static for a static placement with a ranking that takes into account the cumulated score of each player, dynamic for dynamic placement and advanced ranking (see section "Dynamic tournament")
+-Tournament map: a map that lists all the games and which player will play against which (see section "Tournament map").
+
+Once you created a tournament, you can go to the tournament's page. You will have several options:
+-Players: see the list of players, click on a player's name to see their individual results, click on "Add/edit player(s)" to edit the player's list
+-Rankings: see the rankings
+Rounds: see all the rounds of the tournament. Click on a round to input the player's scores. There is also an option to edit the tournament map
+-Back to index: go back to the list of tournaments
+-Download DB: download a copy of the database
+
+The details should be pretty self-explanatory!
+
+---
+
+TOURNAMENT MAP: this is what contains the list of the games that will be played. It is in the CSV format. Each line contains the info of a game in the following format :
+
+Round_number,Table_number,Player1,Player1's_score,Player2,Player2's_score,Player3,Player3's_score,Player4,Player4's_score
+
+The score information is used to pre-fill the game results, for example if you're importing an existing tournament or are doing some seeding. If that's not the case, leave it at 0. Here's an example of a tournament map :
+1,1,1,0,2,0,3,0,4,0
+1,2,5,0,6,0,7,0,8,0
+2,1,1,0,2,0,5,0,6,0
+2,2,3,0,4,0,7,0,8,0
+
+In this simplistic tournament, there are 8 players, 2 rounds and 2 tables.
+The first line describes table 1 of round 1, with players 1, 2, 3 and 4, all starting at 0.
+The second line describes table 2 of round 1, with players 5, 6, 7 and 8, all starting at 0.
+The first line describes table 1 of round 2, with players 1, 2, 5 and 6, all starting at 0.
+The first line describes table 2 of round 2, with players 3, 4, 7 and 8, all starting at 0.
+
+If you want to have a clearer view of this file, just copy the tournament map in a plain text file and save it as *.csv . You can then edit it with a spreadsheet editor (LibreOffice, Excel, etc.)
+
+---
+
+DYNAMIC TOURNAMENT: a dynamic tournament is a tournament where the players' placement depend on their result in the tournament, and the ranking may be just complex than just the cumulative scores of the players. This may be used for a swiss-system tournament, or for a tournament with playoffs. This requires the user to execute code and thus poses a security threat if it is not run in a secure environment, so the option is disabled by default. To enable it, edit the prefs.php in the admin folder and uncomment this line : "// $dynamic = "disabled";".
+
+The format of the tournament map is similar to that of a static tournament, but the player's number may not be plainly expressed, instead being calculated based on the players' results. There is also an extra line after each round that tells the system how to establish ranking.
+
+In order to determine the players' IDs you can use the following variables (although you will mostly use the first one), and even intertwine them:
+-$RankByRound[Round][Rank] : if for example you call $RankByRound[3][1] you will get the ID of the highest ranked player after round 3. If you call $RankByRound[4][2] you will get the ID of the second position player after round 4
+-$ScoreByRound[$Player,$Round] : the score of player $Player got at round $Round
+-$OverallScoreByRound[$Player,$Round] : the overall score of player $Player after round $Round (including previous weighting/calculations)
+-basically any php code: maths operators, conditional structures, etc. Your tournament map may become hard to read, though.
+
+Ranking is determined by an extra line after each round that has the following format:
+Round_number,r,code_used_to_determine_ranking
+The code used to determine ranking will make use of the AttributeRank function that works as such:
+AttributeRank(best rank to attribute, worst rank to attribute, pool's best rank from previous deal, pool's worst rank from previous deal, score formula)
+-best rank to attribute : that's the best rank you'll attribute with this call
+-worst rank to attribute : that's the worst rank you'll attribute with this call
+-pool's best rank from previous deal : that's the rank of the highest ranked player you'll consider for the pool to which you'll attribute ranks
+-pool's worst rank from previous deal : that's the rank of the lowset ranked player you'll consider for the pool to which you'll attribute ranks
+-how you'll calculate the score that'll be used for ranking (you can use the same variables as we used for placement).
+
+You can call the AttributeRank function as many times as is necessary to establish a ranking. It has to be followed each time by a semi-colon, and special characters have to be escaped. Note that if your tournaments follows a static structure at a given round, you can just replace all of this by "static". Here is an example of a tournament with 4 deals and 8 players (you can save it as *.csv an open it in a spreadsheet editor). In the first 3 deals the tournament follows a static structure for both placement and ranking. The last game is a playoff where the 4 highest ranked players fight for ranks 1 to 4 and only get to keep 50% of their previous overall scores, whereas the 4 lowest ranked players fight for ranks 5 to 8 and keep all of their previous overall score :
+
+1,1,1,0,2,0,3,0,4,0
+1,2,5,0,6,0,7,0,8,0
+1,r,"static"
+2,1,1,0,6,0,3,0,8,0
+2,2,5,0,2,0,7,0,4,0
+2,r,"static"
+3,1,1,0,2,0,7,0,8,0
+3,2,5,0,6,0,3,0,4,0
+3,r,"static"
+4,1,"$RankByRound[3][1]",0,"$RankByRound[3][2]",0,"$RankByRound[3][3]",0,"$RankByRound[3][4]",0
+4,2,"$RankByRound[3][5]",0,"$RankByRound[3][6]",0,"$RankByRound[3][7]",0,"$RankByRound[3][8]",0
+4,r,"AttributeRank(1,4,1,4,\"\\$ThisScore+round(\\$PreviousOverallScore*0.5,1)\");AttributeRank(5,8,5,8,\"\\$ThisScore+\\$PreviousOverallScore\");"
 
 ---
 
