@@ -75,7 +75,7 @@ If you want to have a clearer view of this file, just copy the tournament map in
 
 ---
 
-DYNAMIC TOURNAMENT: a dynamic tournament is a tournament where the players' placement depend on their result in the tournament, and the ranking may be just complex than just the cumulative scores of the players. This may be used for a swiss-system tournament, or for a tournament with playoffs. This requires the user to execute code and thus poses a security threat if it is not run in a secure environment, so the option is disabled by default. To enable it, edit the prefs.php in the admin folder and uncomment this line : "// $dynamic = "disabled";".
+DYNAMIC TOURNAMENT: a dynamic tournament is a tournament where the players' placement depend on their result in the tournament, and the ranking may be just complex than just the cumulative scores of the players. This may be used for a swiss-system tournament, or for a tournament with playoffs. This requires the user to execute code and thus poses a security threat if it is not run in a secure environment, so the option is disabled by default. To enable it, edit the prefs.php in the admin folder and comment this line : "$dynamic = "disabled";".
 
 The format of the tournament map is similar to that of a static tournament, but the player's number may not be plainly expressed, instead being calculated based on the players' results. There is also an extra line after each round that tells the system how to establish ranking.
 
