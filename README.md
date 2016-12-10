@@ -69,8 +69,8 @@ The score information is used to pre-fill the game results, for example if you'r
 In this simplistic tournament, there are 8 players, 2 rounds and 2 tables.
 The first line describes table 1 of round 1, with players 1, 2, 3 and 4, all starting at 0.
 The second line describes table 2 of round 1, with players 5, 6, 7 and 8, all starting at 0.
-The first line describes table 1 of round 2, with players 1, 2, 5 and 6, all starting at 0.
-The first line describes table 2 of round 2, with players 3, 4, 7 and 8, all starting at 0.
+The third line describes table 1 of round 2, with players 1, 2, 5 and 6, all starting at 0.
+The fourth line describes table 2 of round 2, with players 3, 4, 7 and 8, all starting at 0.
 
 If you want to have a clearer view of this file, just copy the tournament map in a plain text file and save it as *.csv . You can then edit it with a spreadsheet editor (LibreOffice, Excel, etc.)
 
