@@ -74,6 +74,8 @@ The fourth line describes table 2 of round 2, with players 3, 4, 7 and 8, all st
 
 If you want to have a clearer view of this file, just copy the tournament map in a plain text file and save it as *.csv . You can then edit it with a spreadsheet editor (LibreOffice, Excel, etc.)
 
+You can also generate maps using the placement.sh script that is included.
+
 ---
 
 DYNAMIC TOURNAMENT: a dynamic tournament is a tournament where the players' placement depend on their result in the tournament, and the ranking may be more complex than just the cumulative scores of the players. This may be used for a swiss-system tournament, or for a tournament with playoffs. This requires the user to execute PHP code and thus poses a security threat if it is not run in a secure environment, so the option is disabled by default. To enable it, edit the prefs.php in the admin folder and comment this line : “$dynamic = "disabled";”.
