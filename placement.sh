@@ -4,7 +4,7 @@
 
 if [ -z ${3+x} ]
 then
-  echo -e "Usage: ./placement.sh number_of_rounds number_of_players max_number_of_tries_for_each_round [output_file]\n-number_of_rounds is the number of rounds you'll be playing\n-number_of_players is the number of players entering the tournament\n-max_number_of_tries_for_each_round is the number of times the script is allowed to try to generate a better version of the round it's working on (will stop if perfect)\n-output_file is the file to which the tournament map will be saved\n\nThis script generates tournament map in a format that is suitable for the Mahjong tournament software it is shipped with (CSV with information regarding round, table and players' IDs and scores, for more details see README.md file). It tries to get as few rematches as possible. To do that, for each round of the tournament it will randomly generate a big number of candidates, check how many rematches they induce based on the previous rounds, and keep the best. It will automatically stop if it finds a perfect round (which doesn't induce any rematch), otherwise it will stop when it reaches the maximum number of tries you allowed (higher number of tries for higher quality maps, lower number of tries for lower computational time). You can judge of the quality of a map by its \"Tournament score\", which is just the total number of rematches during the tournament."
+  echo -e "Usage: ./placement.sh number_of_rounds number_of_players max_number_of_tries_for_each_round [output_file]\n-number_of_rounds is the number of rounds you'll be playing\n-number_of_players is the number of players entering the tournament\n-max_number_of_tries_for_each_round is the number of times the script is allowed to try to generate a better version of the round it's working on (will stop if perfect)\n-output_file is the file to which the tournament map will be saved\n\nThis script generates tournament maps in a format that is suitable for the Mahjong tournament software it is shipped with (CSV with information regarding round, table and players' IDs and scores, for more details see README.md file). It tries to get as few rematches as possible. To do that, for each round of the tournament it will randomly generate a big number of candidates, check how many rematches they induce based on the previous rounds, and keep the best. It will automatically stop if it finds a perfect round (which doesn't induce any rematch), otherwise it will stop when it reaches the maximum number of tries you allowed (higher number of tries for higher quality maps, lower number of tries for lower computational time). You can judge of the quality of a map by its \"Tournament score\", which is just the total number of rematches during the tournament."
   exit 1
 fi
 
@@ -121,7 +121,7 @@ do
   for (( Player=1; Player<=$Players; Player++ ))
   do
     eval "Player$Player+=(\${NewArrayPlayer$Player[@]})"
-    eval "Player$Player=(\$(for l in \${Player$Player[@]}; do echo \$l; done | sort -u))"
+    #eval "Player$Player=(\$(for l in \${Player$Player[@]}; do echo \$l; done | sort -u))"
   done
 
   echo "Round $Round done (score: $RoundScore)."
@@ -137,6 +137,3 @@ then
 fi
 
 echo -e "\nTournament score: $TournamentScore"
-
-#echo "Player1 a joue avec :"
-#printf '%s\n' "${Player1[@]}"

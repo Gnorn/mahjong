@@ -17,15 +17,15 @@ table:not(.Menu) {
 	border: 2px solid black;
 }
 
-td:not(.Game, .Menu) {
+td:not(.Game):not(.Menu) {
 	border: 1px solid black;
 }
 
-th:not(.Game, .Menu) {
+th:not(.Game):not(.Menu) {
 	border: 1px solid black;
 }
 
-tr:not(.Game, .Menu) {
+tr:not(.Game):not(.Menu) {
 	background-color: #FAA;
 	border: 2px solid black;
 }
