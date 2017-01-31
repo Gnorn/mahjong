@@ -30,7 +30,7 @@ tr:not(.Game):not(.Menu) {
 	border: 2px solid black;
 }
 
-tr:hover:not(.Map, .Menu) {
+tr:hover:not(.Map):not(.Menu) {
 	background-color: #AAF;
 }
 
