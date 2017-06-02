@@ -1,0 +1,73 @@
+body {
+color:black;
+background-color:white;
+}
+
+a {
+	color:blue;
+	text-decoration: none;
+}
+
+a:hover {
+	color:#0000AA;
+}
+
+table:not(.Menu) {
+	border-collapse: collapse;
+	border: 2px solid black;
+}
+
+td:not(.Game):not(.Menu) {
+	border: 1px solid black;
+}
+
+th:not(.Game):not(.Menu) {
+	border: 1px solid black;
+}
+
+tr:not(.Game):not(.Menu) {
+	background-color: #FAA;
+	border: 2px solid black;
+}
+
+tr:hover:not(.Map):not(.Menu) {
+	background-color: #AAF;
+}
+
+table.Menu {
+	background-color: #FAA;
+}
+
+.ColPlayers2 {
+	width: 150px;
+}
+
+.ColRankings2 {
+	width: 150px;
+}
+
+.TableGameInRound {
+	width: 150px;
+}
+
+.ColInputScore1 {
+	width: 150px;
+}
+
+.TableIndex {
+	width: 700px;
+}
+.ColIndex1 {
+	width: 35%;
+}
+.ColIndex2 {
+	width: 55%;
+}
+
+//A supprimer apres test :
+.Map td {
+	border: 1px solid black;
+}
+.Map td:hover {
+	background-color: blue;
+}

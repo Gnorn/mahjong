@@ -25,7 +25,7 @@ if (!isset($_POST['create'])) {
   try {
  
     // Create (connect to) SQLite database in file
-    $file_db = new PDO('sqlite:../tournaments.sqlite3');
+    $file_db = new PDO('sqlite:tournaments.sqlite3');
     // Set errormode to exceptions
     $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -62,7 +62,7 @@ if (!isset($_POST['create'])) {
     echo "<b>Tournoi $TournamentName</b><br />
 	<p>
 	<b>Round $Round:</b>
-	<form action=\"round.php\" method=\"post\">
+	<form>
 	<table>
 	<tr><th>Table</th><th>Results</th></tr>";
 
@@ -125,9 +125,6 @@ if (!isset($_POST['create'])) {
 
 </table>
 
-<input type="hidden" name="id" value="<?php echo $ID; ?>">
-<input type="hidden" name="round" value="<?php echo $Round; ?>">
-<input type="submit" name="create" value="Create">
 
 </form>
 
@@ -145,7 +142,7 @@ if (!isset($_POST['create'])) {
   try {
  
     // Create (connect to) SQLite database in file
-    $file_db = new PDO('sqlite:../tournaments.sqlite3');
+    $file_db = new PDO('sqlite:tournaments.sqlite3');
     // Set errormode to exceptions
     $file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -214,44 +211,9 @@ if (!isset($_POST['create'])) {
         foreach ($result as $ZOB) {
           $rows++;
         }
-
-        if ($rows == 0) {
-          // Prepare INSERT statement
-          $insert = 'INSERT INTO _'.$ID.'_Games (tablenumber, round, player1, player2, player3, player4, score1, score2, score3, score4) VALUES ('.$game[1].', '.$game[0].', '.$Player1.', '.$Player2.', '.$Player3.', '.$Player4.', '.$Points1.', '.$Points2.', '.$Points3.', '.$Points4.')';
-
-          $stmt = $file_db->prepare($insert);
-          $stmt->execute();
-        } else {
-          $update = 'UPDATE  _'.$ID.'_Games SET player1='.$Player1.', player2='.$Player2.', player3='.$Player3.', player4='.$Player4.', score1='.$Points1.', score2='.$Points2.', score3='.$Points3.', score4='.$Points4.' WHERE tablenumber='.$game[1].' AND round='.$game[0];
-          $file_db->exec($update);
-        }
         
       }
 
-    }
-
-    // Take care of penalties
-    foreach ($_POST['penalty'] as $key=>$value) {
-
-      // Check if penalty already exists and creates it, updates it, or deletes it
-      $result = $file_db->query('SELECT * FROM _'.$ID.'_Penalties WHERE round='.$Round.' AND player = '.$key);
-      $rows = 0;
-      foreach ($result as $ZOB) {
-        $rows++;
-      }
-      if ($rows == 0 && $value != 0) {
-        $insert = 'INSERT INTO _'.$ID.'_Penalties (round, player, value) VALUES ('.$Round.', '.$key.', '.$value.')';
-        $stmt = $file_db->prepare($insert);
-        $stmt->execute();
-      } elseif ($rows != 0 && $value == 0) {
-        // Deletes
-        $delete = "DELETE FROM _".$ID."_Penalties WHERE round=".$Round." AND player=".$key;
-        $file_db->exec($delete);
-      } elseif ($rows !=0 && $value != 0) {
-        // Update
-        $update = "UPDATE _".$ID."_Penalties SET value=".$value." WHERE round=".$Round." AND player=".$key;
-        $file_db->exec($update);
-      }
     }
 
     // Close file db connection
@@ -263,7 +225,6 @@ if (!isset($_POST['create'])) {
     echo $e->getMessage();
   }
 
-echo "</table><br />\n<a href=\"round.php?id=$ID&round=$Round\">Edit scores</a>";
 }
 
 ?>
