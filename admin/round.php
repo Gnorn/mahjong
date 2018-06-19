@@ -103,9 +103,9 @@ if (!isset($_POST['create'])) {
         echo "<tr><td>".$game[1]."</td><td><table>
 	<tr><th class=\"ColInputScore1\">Player</th><th>Score</th><th>Penalty</th></tr>
 	<tr><td>".$Player1.". ".$Players[$Player1]."</td><td><input type=\"text\" size=\"5\" name=\"points1[".$game[1]."]\" value=\"".$Points1."\"></td><td><input size=\"5\" type=\"text\" name=\"penalty[".$Player1."]\" value=\"".$Penalties[$Player1]."\"></td></tr>
-	<tr><td>".$Player1.". ".$Players[$Player2]."</td><td><input size=\"5\" type=\"text\" name=\"points2[".$game[1]."]\" value=\"".$Points2."\"></td><td><input size=\"5\" type=\"text\" name=\"penalty[".$Player2."]\" value=\"".$Penalties[$Player2]."\"></td></tr>
-	<tr><td>".$Player1.". ".$Players[$Player3]."</td><td><input size=\"5\" type=\"text\" name=\"points3[".$game[1]."]\" value=\"".$Points3."\"></td><td><input size=\"5\" type=\"text\" name=\"penalty[".$Player3."]\" value=\"".$Penalties[$Player3]."\"></td></tr>
-	<tr><td>".$Player1.". ".$Players[$Player4]."</td><td><input size=\"5\" type=\"text\" name=\"points4[".$game[1]."]\" value=\"".$Points4."\"><td><input size=\"5\" type=\"text\" name=\"penalty[".$Player4."]\" value=\"".$Penalties[$Player4]."\"></td></td></tr>
+	<tr><td>".$Player2.". ".$Players[$Player2]."</td><td><input size=\"5\" type=\"text\" name=\"points2[".$game[1]."]\" value=\"".$Points2."\"></td><td><input size=\"5\" type=\"text\" name=\"penalty[".$Player2."]\" value=\"".$Penalties[$Player2]."\"></td></tr>
+	<tr><td>".$Player3.". ".$Players[$Player3]."</td><td><input size=\"5\" type=\"text\" name=\"points3[".$game[1]."]\" value=\"".$Points3."\"></td><td><input size=\"5\" type=\"text\" name=\"penalty[".$Player3."]\" value=\"".$Penalties[$Player3]."\"></td></tr>
+	<tr><td>".$Player4.". ".$Players[$Player4]."</td><td><input size=\"5\" type=\"text\" name=\"points4[".$game[1]."]\" value=\"".$Points4."\"><td><input size=\"5\" type=\"text\" name=\"penalty[".$Player4."]\" value=\"".$Penalties[$Player4]."\"></td></td></tr>
 	</table>\n";
       }
 
