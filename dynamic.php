@@ -40,7 +40,7 @@ function AttributeRank($BestRank, $WorstRank, $BestPool, $WorstPool, $ScoreFormu
 
   $CurrentPlayerIDList = 1;
   for ($CurrentPlayerInPool = $BestPool; $CurrentPlayerInPool <= $WorstPool;$CurrentPlayerInPool++) {
-
+    if ($CurrentPlayerInPool >= $BestPool && $CurrentPlayerInPool <= $WorstPool)
     $RankByRound[$CurrentRound][$CurrentPlayerInPool] = $PlayerIDList[$CurrentPlayerIDList];
     $CurrentPlayerIDList++;
 
@@ -112,7 +112,7 @@ for ($CurrentRound = 1; $CurrentRound <= $MaxRound; $CurrentRound++) {
     for ($CurrentPlayer = 1; $CurrentPlayer <= $MaxPlayer; $CurrentPlayer++) {
       $OverallScoreByThisRound[$CurrentPlayer] = $OverallScoreByRound[$CurrentRound - 1][$CurrentPlayer] + $ScoreByRound[$CurrentPlayer][$CurrentRound];
     }
-  $OverallScoreByRound[$CurrentRound] = $OverallScoreByThisRound;  
+  $OverallScoreByRound[$CurrentRound] = $OverallScoreByThisRound;
 
   $PlayerIDList = range(1, $MaxPlayer);
   $OverallScoreByRound[$CurrentRound] = $OverallScoreByThisRound;

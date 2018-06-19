@@ -43,7 +43,7 @@
       $name = $m['name'];
       $description = $m['description'];
 
-      echo "<tr onclick=\"document.location = 'tournament.php?id=$id';\"><td class=\"ColIndex1\">$name</td><td class=\"ColIndex2\">$description</td><td><a href=\"delete.php?id=$id\">Delete</a></td></tr>";
+      echo "<tr onclick=\"document.location = 'tournament.php?id=$id';\"><td class=\"ColIndex1\">$name</td><td class=\"ColIndex2\">$description</td></tr>";
     }
 
 ?></table><?php
